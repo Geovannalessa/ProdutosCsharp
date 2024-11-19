@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Produtos", "Produtos\Produtos.csproj", "{E74C34BB-C38B-4039-BEE7-43C46FCBEC26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutoContext", "ProdutoContext\ProdutoContext.csproj", "{6210FE69-70E5-4A17-942F-71F0AFAE46DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdutoContext", "ProdutoContext\ProdutoContext.csproj", "{6210FE69-70E5-4A17-942F-71F0AFAE46DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutoDomain", "ProdutoDomain\ProdutoDomain.csproj", "{4AA2BDD2-09E5-4904-A571-904EAEA824B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdutoDomain", "ProdutoDomain\ProdutoDomain.csproj", "{4AA2BDD2-09E5-4904-A571-904EAEA824B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

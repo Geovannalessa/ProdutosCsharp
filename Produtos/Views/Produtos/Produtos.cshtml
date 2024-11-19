@@ -1,37 +1,56 @@
 ﻿@model IEnumerable<ProdutoDomain.Entidades.Produtos> 
+@using ProdutoDomain.Entidades
+@{
+    int contador = 1;
+}
+@if (ViewBag.Error != null)
+{
+    <div>Ocorreu erro: @ViewBag.Error</div>    
+}
 
-<nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<h3 class="d-flex align-items-center justify-content-between">
+    <span>Produtos</span>
+    <div>
+        <a class="btn btn-primary me-2" href="@Url.Action("CriarEditarProduto", "Produtos", null)">
+            <i class="bi bi-plus"></i> Cadastrar
+        </a>
+        <a class="btn btn-outline-light" href="@Url.Action("Index", "Home")">
+            <i class="bi bi-arrow-left-short"></i> Voltar
+        </a>
     </div>
-</nav>
+</h3>
 
 <table class="table table-striped-columns">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col"><i class="bi bi-align-start"></i></th>
             <th scope="col">Nome</th>
             <th scope="col">Preço</th>
             <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var produto in Model)
+        @foreach (Produtos produto in Model)
         {
             <tr>
-                <td>@produto.Id</td>
+                <td>@contador</td>
                 <td>@produto.Nome</td>
-                <td>@produto.Preco</td>
-                <td>
-                    <button type="button" class="btn btn-light">Editar</button>
-                    <button type="button" class="btn btn-danger">Excluir</button>
+                <td>R$@produto.Preco</td>
+                <td class="text-end">
+                    <!-- Alinha os botões à direita -->
+                    <a class="btn btn-sm btn-light" href="@Url.Action("CriarEditarProduto", "Produtos", new { id = produto.Id })">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("ExcluirProduto", "Produtos", new { id = produto.Id })">
+                        <i class="bi bi-trash3"></i> Excluir
+                    </a>
                 </td>
             </tr>
+            contador++;
         }
     </tbody>
 </table>
-
-<button type="button" class="btn btn-success">Adicionar Produtos</button>
