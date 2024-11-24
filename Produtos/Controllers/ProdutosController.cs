@@ -1,25 +1,69 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 using ProdutoContext;
 using ProdutoDomain.Entidades;
+using System.Drawing;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using static Produtos.Controllers.Criptografia;
 namespace Produtos.Controllers
 {
     public class ProdutosController : Controller
 	{
-		
+		private readonly CriptografiaService _criptografiaService;
 		private readonly Context _context;
-
-		public ProdutosController(Context context)
+		public ProdutosController(Context context, CriptografiaService criptografiaService)
 		{
 			_context = context ?? throw new ArgumentNullException(nameof(context));
+			_criptografiaService = criptografiaService;
 		}
+		
+
+		#region login
+
+		public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult EntrarConta(string email, string senha)
+        {
+            //buscando o usuario pelo email no BD
+            Usuario usuario = _context.Usuario.FirstOrDefault(u => u.email == email) ?? throw new Exception("Dados inseridos incorretos!");
+			if (usuario.senha != _criptografiaService.HashSenha(senha)) throw new Exception("Dados inseridos incorretos!");
+			
+			return RedirectToAction("Index", "Home");
+		}
+        public IActionResult AlterarSenha()
+        {
+            return View();
+        }
+		public IActionResult VerificaUsuario(string email, string cpf, string senha, string senha2)
+        {
+            try
+            {
+			    Usuario usuarioBD = _context.Usuario.FirstOrDefault(u => u.email == email) ?? throw new Exception("Usuário não encontrado ou não existe!");
+			    if (usuarioBD.cpf != cpf) throw new Exception("Usuário não encontrado ou não existe!");
+                if (senha != senha2) throw new Exception("As senhas não se coincidem!");
+			    usuarioBD.senha = _criptografiaService.HashSenha(senha);
+				this.SalvarUsuarioBD(usuarioBD);
+                return RedirectToAction("Login", "Produtos");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+		}
+		
+		#endregion
+		
 
         #region views
-        //TODO o site vai para os adm de uma loja de eletronicos
-        //TODO: adicionar a coluna estoque para os produtos 
-        //TODO: criar uma nova tabela chamada de usuario e adicionar as colunas nome, login, cpf, cep e email.. uma tabela carrinho?
-
         public IActionResult Produtos()
 		{
 			var produtos = _context.Produtos.ToList();
@@ -71,11 +115,7 @@ namespace Produtos.Controllers
         public IActionResult CriarEditarUsuario(int? id = null)
         {
            Usuario usuario  = new Usuario();
-
-			if (id != null)
-            {
-                 usuario = this.ObtemUsuario(id.Value); 
-			}
+			if (id != null) usuario = this.ObtemUsuario(id.Value);
             return View(usuario);
         }
         public IActionResult ExcluirUsuario(int id)
@@ -83,9 +123,10 @@ namespace Produtos.Controllers
             this.RemoverUsuario(id);
             return RedirectToAction("Usuarios", "Produtos");
         }
-        public IActionResult SalvarUsuario(Usuario usuario) {
+        public IActionResult SalvarUsuario(Usuario usuario,string senha2, bool? login = false) {
             try
             {
+                if (usuario.senha != senha2) throw new Exception("As senhas não se coincidem!");
                 this.SalvarUsuarioBD(usuario);
             }
             catch (Exception ex)
@@ -93,7 +134,15 @@ namespace Produtos.Controllers
 
                 throw;
             }
-            return RedirectToAction("Usuarios", "Produtos");
+
+            if (login != true) { 
+                
+                return RedirectToAction("Usuarios", "Produtos");
+            }
+            else
+            {
+				return RedirectToAction("Login", "Produtos");
+			}
         }
         #endregion
 
@@ -148,17 +197,22 @@ namespace Produtos.Controllers
         }
         public void SalvarUsuarioBD(Usuario usuario) {
             if(usuario.Id == 0)
-            { 
-                _context.Usuario.Add(usuario);
+            {
+				usuario.senha = _criptografiaService.HashSenha(usuario.senha);
+				_context.Usuario.Add(usuario);
             }
             else
             {
                Usuario up = this.ObtemUsuario(usuario.Id);
                 up.nome = usuario.nome;
                 up.email = usuario.email;
-                up.senha = usuario.senha;
+                up.senha = _criptografiaService.HashSenha(usuario.senha);
                 up.cep = usuario.cep;
                 up.cpf = usuario.cpf;
+                up.logradouro = usuario.logradouro;
+                up.cidade = usuario.cidade;
+                up.bairro = usuario.bairro;
+                up.estado = usuario.estado;
             }
             _context.SaveChanges();
         }

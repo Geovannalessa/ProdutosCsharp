@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Produtos.styles.css" asp-append-version="true" />
+    <style type="text/css">
+        #loginTitulo{
+            color: #79e9ff;
+        }
+    </style>
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="">InfraGestão</a>
+        </div>
+    </nav>
+</header>
+
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="align-items-center ">
+        <img src="https://images.pexels.com/photos/804269/pexels-photo-804269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Imagem Login" class="img-fluid" style="max-height: 100%; max-width: 100%;">
+    </div>
+    <div class="col-md-6 d-flex flex-column align-items-center">
+        <h3 class="text-center w-50 mb-4" id="loginTitulo">Login</h3>
+        <form action="@Url.Action("EntrarConta", "Produtos")" method="post" class="w-75">
+            <div class="form-floating col-12 mb-3">
+                <input class="form-control form-control-sm" type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="form-floating col-12 mb-3">
+                <input class="form-control form-control-sm" type="password" id="cpf" name="senha" required>
+                <label for="senha">Senha</label>
+            </div>
+            <div class="d-flex justify-content-between">
+                <a class="btn btn-light" href="@Url.Action("AlterarSenha", "Produtos")">Esqueceu a senha?</a>
+                <button type="submit" class="btn btn-info">Entrar</button>
+            </div>
+        </form>
+    </div>
+</div>
