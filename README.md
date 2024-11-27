@@ -1,4 +1,4 @@
-Projeto de Intranet
+<h3>Projeto de Intranet</h3>
 Este projeto é um sistema web desenvolvido em C# com foco em se tornar uma intranet corporativa. Ele inclui funcionalidades como cadastro e gerenciamento de usuários e produtos, além de uma tela de login segura com criptografia de senhas. O projeto utiliza o Entity Framework para interação com o banco de dados SQL Server e Bootstrap para uma interface moderna e responsiva.
 
 <h3>🚀 Funcionalidades</h3>
