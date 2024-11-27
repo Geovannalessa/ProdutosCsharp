@@ -13,7 +13,7 @@ namespace ProdutoDomain.Entidades
 		public string email { get; set; }
 		public string senha { get; set;}
 		public string cpf { get; set; }
-		public int? cep { get; set; }
+		public string? cep { get; set; }
 		public string? logradouro { get; set; }
 		public string? bairro { get; set; }
 		public string? cidade { get; set; }

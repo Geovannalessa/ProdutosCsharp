@@ -21,10 +21,8 @@ namespace Produtos.Controllers
 			_context = context ?? throw new ArgumentNullException(nameof(context));
 			_criptografiaService = criptografiaService;
 		}
-		
 
 		#region login
-
 		public IActionResult Login()
         {
             return View();
@@ -33,7 +31,8 @@ namespace Produtos.Controllers
         {
             //buscando o usuario pelo email no BD
             Usuario usuario = _context.Usuario.FirstOrDefault(u => u.email == email) ?? throw new Exception("Dados inseridos incorretos!");
-			if (usuario.senha != _criptografiaService.HashSenha(senha)) throw new Exception("Dados inseridos incorretos!");
+            string senhaCriptografado = _criptografiaService.HashSenha(senha);
+			if (usuario.senha != senhaCriptografado) throw new Exception("Dados inseridos incorretos!");
 			
 			return RedirectToAction("Index", "Home");
 		}
