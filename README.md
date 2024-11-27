@@ -5,25 +5,19 @@ Este projeto é um sistema web desenvolvido em C# com foco em se tornar uma intr
 Implementadas
 Cadastro e Gerenciamento de Usuários:
 
-Campos: Nome, Email, Senha, CPF, CEP (com consulta automática de endereço via API), Logradouro, Bairro, Cidade, Estado.
-Validação de dados no front-end e no back-end.
-CRUD de Produtos:
+Campos: Nome, Email, Senha, CPF, CEP (com consulta automática de endereço via API), Logradouro, Bairro, Cidade, Estado.<br>
+Validação de dados no front-end e no back-end.<br>
+CRUD de Produtos:<br>
+Cadastro, edição, consulta e exclusão de produtos.<br>
+Campos: Nome e Preço.<br>
 
-Cadastro, edição, consulta e exclusão de produtos.
-Campos: Nome e Preço.
-Tela de Login:
+Tela de Login:<br>
+Login seguro com criptografia de senhas.(Em Desenvolvimento)<br>
+Alteração de Senha:<br>
+Atualmente, a validação de senha durante a alteração está em desenvolvimento devido ao uso de criptografia.<br>
+Aviso: A funcionalidade está sendo ajustada para garantir segurança e usabilidade.<br>
 
-Login seguro com criptografia de senhas.
-Em Desenvolvimento
-Alteração de Senha:
-Atualmente, a validação de senha durante a alteração está em desenvolvimento devido ao uso de criptografia.
-Aviso: A funcionalidade está sendo ajustada para garantir segurança e usabilidade.
-Futuras Funcionalidades
-Expansão do sistema para incluir funcionalidades específicas da intranet corporativa.
-Integração com outros sistemas corporativos.
-Implementação de controle de permissões para diferentes níveis de acesso.
-
-<h3>🛠️ Tecnologias Utilizadas</h3>h3>
+<h3>🛠️ Tecnologias Utilizadas</h3>
 Linguagem: C#
 Frameworks:
 Entity Framework para ORM
@@ -32,9 +26,9 @@ Banco de Dados: SQL Server
 IDE: Visual Studio
 
 <h3>🎯 Requisitos para Rodar o Projeto</h3>
-Visual Studio: Certifique-se de ter o Visual Studio instalado na sua máquina.
-SQL Server: Banco de dados configurado e em execução.
-.NET Framework/Core: Versão compatível com o projeto.
+Visual Studio: Certifique-se de ter o Visual Studio instalado na sua máquina.<br>
+SQL Server: Banco de dados configurado e em execução.<br>
+.NET Framework/Core: Versão compatível com o projeto.<br>
 Conexão com o Banco de Dados: Configure a connection string no arquivo appsettings.json.
 
 <h3>📦 Como Configurar o Projeto</h3>
