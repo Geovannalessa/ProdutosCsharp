@@ -117,6 +117,11 @@ namespace Produtos.Controllers
 			if (id != null) usuario = this.ObtemUsuario(id.Value);
             return View(usuario);
         }
+        public IActionResult DetalhesUsuario(int id)
+        {
+            Usuario usuario = this.ObtemUsuario(id);
+            return View(usuario);
+        }
         public IActionResult ExcluirUsuario(int id)
         {
             this.RemoverUsuario(id);
@@ -143,6 +148,7 @@ namespace Produtos.Controllers
 				return RedirectToAction("Login", "Produtos");
 			}
         }
+
         #endregion
 
 

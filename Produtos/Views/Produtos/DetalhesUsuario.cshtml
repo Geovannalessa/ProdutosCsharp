@@ -1,0 +1,61 @@
+﻿@using ProdutoDomain.Entidades
+@model Usuario
+
+<h3 class="d-flex align-items-center justify-content-between">
+    <span>Detalhes Usuário</span>
+    <div>
+        <a class="btn btn-primary" href="@Url.Action("CriarEditarUsuario", "Produtos", new {id=Model.Id})">
+            <i class="bi bi-pencil-square"></i> Editar
+        </a>
+        <a class="btn btn-outline-light" href="@Url.Action("Index", "Home")">
+            <i class="bi bi-arrow-left-short"></i> Voltar
+        </a>
+    </div>
+</h3>
+
+
+<main class="container mt-4">
+    <div>
+        <div>
+            <div class="row mb-2">
+                <div class="col-sm-6 d-flex">
+                    <span class="fw-bold text-muted me-2">Nome:</span>
+                    <span>@Model.nome</span>
+                </div>
+                <div class="col-sm-6 d-flex">
+                    <span class="fw-bold text-muted  me-2">E-mail:</span>
+                    <span>@Model.email</span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-sm-6 d-flex">
+                    <span class="fw-bold text-muted me-2">CPF:</span>
+                    <span>@Model.cpf</span>
+                </div>
+                <div class="col-sm-6 d-flex">
+                    <span class="fw-bold text-muted  me-2">Bairro:</span>
+                    <span>@Model.bairro</span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-sm-6 d-flex">
+                    <span class="fw-bold text-muted  me-2">Logradouro:</span>
+                    <span>@Model.logradouro</span>
+                </div>
+                <div class="col-sm-6 d-flex">
+                    <span class="fw-bold text-muted  me-2">Cidade:</span>
+                    <span>@Model.cidade</span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-sm-6 d-flex">
+                    <span class="fw-bold text-muted  me-2">Estado:</span>
+                    <span>@Model.estado</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -32,9 +32,9 @@
 </h3>
 
 <form method="post" action="@Url.Action("SalvarUsuario", "Produtos")">
-	<div class="form-floating col-sm-7 mb-3 align-content-center mx-auto">
-		<input class="form-control form-control-sm" name="nome" id="nome" type="text" value="@Model.nome" required>
-		<label for="nome">Nome</label>
+	<div class="form-floating col-sm-7  mb-3 align-content-center mx-auto">
+		<input type="text" class="form-control form-control-sm" aria-describedby="validationServer03Feedback" name="nome" id="nome" value="@Model.nome" required>
+		<label for="nome" class="form-label">Nome Completo</label>
 	</div>
 	<div class="form-floating col-sm-7 mb-3 align-content-center mx-auto">
 		<input class="form-control form-control-sm" name="email" id="email" type="email" value="@Model.email" required>
